@@ -4,8 +4,8 @@ class Item:
     def __init__(self, name: str, price: float, quantity: float):
         # Checking validation to the Received Arguments
 
-        assert price >=0
-        assert quantity >=0
+        assert price >=0,f"price {price} is not greater than zero"
+        assert quantity >=0,f"qantity {quantity} is not greater than zero"
 
         # Assigning parms to self
         self.name = name
