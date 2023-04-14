@@ -1,4 +1,4 @@
-
+import csv342
 
 class Item:
 
@@ -23,12 +23,14 @@ class Item:
 
     def apply_discount(self):
         self.price = self.price * self.pay_rate
-
+    def __repr__(self) -> str:
+        return f"Items('{self.name}',{self.price},{self.quantity})"
 
 item1 = Item("Phone", 100, 5)
 item2 = Item("Laptop", 1000, 3)
 item3 = Item("Cable", 1000, 1)
-item4 = Item('Charger', 100, 2)
+item4 = Item("Charger", 100, 2)
 
-for instance in Item.all:
-    print("Instance: ", instance.name)
+print(Item.all)
+
+
