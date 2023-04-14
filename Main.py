@@ -1,6 +1,9 @@
 
 
 class Item:
+
+    pay_rate=0.8
+
     def __init__(self, name: str, price: float, quantity: float):
         # Checking validation to the Received Arguments
 
@@ -25,5 +28,7 @@ item2 = Item("Laptop", 1000, 3)
 
 print("Item2: ", item2.calculate_total_price())
 
+print(Item.__dict__) #All the attributes for Class level
+print(item1.__dict__) #All the attributes for Instance level
 
 # print(2*"salman")
