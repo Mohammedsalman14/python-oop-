@@ -6,6 +6,13 @@ class Item:
     pay_rate = 0.8
     all = []
 
+    def __init__(self, name: str, price: float, quantity=0):
+        self.name = name
+        self.price = price
+        self.quantity = quantity
+
+        Item.all.append(self)
+
     def calculate_total_price(self):
         return self.price*self.quantity
 
@@ -38,19 +45,23 @@ class Item:
 
 
 class Phone(Item):
-    def __init__(self, name: str, price: float, quantity: float):
-        # Checking validation to the Received Arguments
+    all = []
 
-        assert price >= 0, f"price {price} is not greater than zero"
-        assert quantity >= 0, f"qantity {quantity} is not greater than zero"
+    def __init__(self, name: str, price: float, quantity=0, broken_phones=0):
+
+        super().__init__(name, price, quantity)
+
+        # Checking validation to the Received Arguments
+        assert broken_phones >= 0, f"broken_phones {broken_phones} is not greater than zero"
 
         # Assigning parms to self
-        self.name = name
-        self.price = price
-        self.quantity = quantity
 
+        self.broken_phones = broken_phones
         self.all.append(self)
 
+    def showbroken_phones(self):
+        return self.broken_phones
 
-phone1 = Phone("apple", 500, 5)
-print(phone1.all)
+
+ph = Phone("Samsung", 200, 3)
+print(ph.calculate_total_price())
