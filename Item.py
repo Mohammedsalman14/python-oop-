@@ -5,12 +5,14 @@ class Item:
     all = []
 
     def __init__(self, name: str, price: float, quantity=0):
-        self.name = name
+        self.Fname = name
         self.price = price
         self.quantity = quantity
 
         Item.all.append(self)
-
+    @property
+    def name(self):
+        return self.Fname
     def calculate_total_price(self):
         return self.price*self.quantity
 
@@ -18,7 +20,7 @@ class Item:
         self.price = self.price * self.pay_rate
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}('{self.name}',{self.price},{self.quantity})"
+        return f"{self.__class__.__name__}('{self.Fname}',{self.price},{self.quantity})"
 
     @classmethod
     def instantiate_from_csv(cls):
