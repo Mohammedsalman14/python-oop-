@@ -8,7 +8,7 @@ class Item:
 
     def __init__(self, name: str, price: float, quantity=0):
         self.__name = name
-        self.price = price
+        self.__price = price
         self.quantity = quantity
 
         Item.all.append(self)
@@ -19,13 +19,27 @@ class Item:
 
     @name.setter
     def name(self, value):
-        self.__name = value
+        if len(value) > 10:
+            raise Exception("The name is too long")
+        else:
+            self.__name = value
+
+    @property
+    def price(self):
+        return self.__price
+
+    @price.setter
+    def price(self, value):
+        self.__price = value
+
+    def apply_discount(self):
+        self.__price = self.__price * self.pay_rate
+
+    def apply_increment(self, increment_value):
+        self.__price = self.__price+self.__price*increment_value
 
     def calculate_total_price(self):
         return self.price*self.quantity
-
-    def apply_discount(self):
-        self.price = self.price * self.pay_rate
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}('{self.__name}',{self.price},{self.quantity})"
@@ -42,6 +56,16 @@ class Item:
                     'price')),
                 quantity=int(item.get('quantity')))
 
+    def __send(self):
+        pass
+    def __prepare_body(self):
+        pass
+    def __connect(self):
+        pass
+    def sendMail(self):
+        self.__send()
+        self.__prepare_body()
+        self.__connect()
     @staticmethod
     def is_integer(num):
         if isinstance(num, float):
